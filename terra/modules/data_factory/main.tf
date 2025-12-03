@@ -20,16 +20,8 @@ resource "azurerm_data_factory" "Kdev" {
       tenant_id            = repo_configuration.value.tenant_id
     }
   }
-  // ---------- Customer Managed Key ----------
-  dynamic "customer_managed_key" {
-    for_each = var.customer_managed_key == null ? [] : [var.customer_managed_key]
-    content {
-      key_vault_id = customer_managed_key.value.key_vault_id
-      key_name     = customer_managed_key.value.key_name
-      key_version  = customer_managed_key.value.key_version
-      identity_id  = customer_managed_key.value.identity_id
-    }
-  }
+
+
   // ---------- Encryption ----------
   dynamic "encryption" {
     for_each = var.encryption == null ? [] : [var.encryption]

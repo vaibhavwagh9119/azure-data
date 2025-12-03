@@ -9,6 +9,7 @@ terraform {
 }
 provider "azurerm" {
   features {}
+  subscription_id = var.subscription_id
 }
 module "data_factory" {
   source = "./modules/data_factory"

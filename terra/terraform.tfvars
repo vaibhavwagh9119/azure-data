@@ -3,6 +3,7 @@ location            = "East US"
 resource_group_name = "rg-demo"
 identity_type = "SystemAssigned"
 identity_ids  = []
+subscription_id = "e4a7517e-f8b3-4dc6-b3dc-890d5c8238ad"
 
 encryption = {
   vault_base_url = "https://my-kv.vault.azure.net/"

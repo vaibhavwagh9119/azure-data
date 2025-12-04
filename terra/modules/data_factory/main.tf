@@ -8,6 +8,9 @@ resource "azurerm_data_factory" "Kdev" {
     identity_ids = var.identity_ids
   }
   // ---------- Repo Configuration ----------
+    # REQUIRED for managed private endpoints
+  managed_virtual_network_enabled = true
+
 
 
   // ---------- Global Parameters ----------
@@ -21,4 +24,20 @@ resource "azurerm_data_factory" "Kdev" {
   }
   public_network_enabled = var.public_network_enabled
   tags                   = var.tags
+}
+
+resource "azurerm_storage_account" "testkdev" {
+  name                     = "testkdev"
+  resource_group_name      = var.resource_group_name
+  location                 = var.location
+  account_kind             = "BlobStorage"
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
+
+resource "azurerm_data_factory_managed_private_endpoint" "adfendpoint" {
+  name               = "adfendpoint"
+  data_factory_id    = azurerm_data_factory.Kdev.id
+  target_resource_id = azurerm_storage_account.testkdev.id
+  subresource_name   = "blob"
 }

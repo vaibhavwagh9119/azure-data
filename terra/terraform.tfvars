@@ -1,6 +1,6 @@
-name                = "my-adf"
+name                = "my-adf-kdev"
 location            = "East US"
-resource_group_name = "rg-demo"
+resource_group_name = "POC-Kapil"
 identity_type = "SystemAssigned"
 identity_ids  = []
 subscription_id = "e4a7517e-f8b3-4dc6-b3dc-890d5c8238ad"
@@ -14,11 +14,11 @@ global_parameters = [
   {
     name  = "Environment"
     type  = "String"
-    value = "Dev"
+    value = "test"
   }
 ]
 public_network_enabled = false
 tags = {
-  environment = "dev"
+  environment = "test"
   team        = "data"
 }
